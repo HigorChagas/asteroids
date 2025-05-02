@@ -44,6 +44,13 @@ def main():
                 print("Game over!")
                 import sys
                 sys.exit()
+        
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.kill()
+                    shot.kill()
+                    asteroid.split()
+
 
         pygame.Surface.fill(screen, (0, 0, 0))
 
@@ -51,7 +58,7 @@ def main():
             sprite.draw(screen)
 
         pygame.display.update()
-        
+
         dt = clock.tick(60) / 1000   
 
 if __name__ == "__main__":
