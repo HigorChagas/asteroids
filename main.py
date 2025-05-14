@@ -32,6 +32,9 @@ def main():
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    font = pygame.font.SysFont(None, 36)
+
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -50,9 +53,12 @@ def main():
                     asteroid.kill()
                     shot.kill()
                     asteroid.split()
-
-
+                    player.add_score(100)
+        
         pygame.Surface.fill(screen, (0, 0, 0))
+
+        score_text = font.render(f"Score: {player.score}", True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
 
         for sprite in drawable:
             sprite.draw(screen)
